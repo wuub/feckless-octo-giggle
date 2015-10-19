@@ -9,3 +9,11 @@ func PrefixFilter(src string) (f Filter, err error) {
 	}, nil
 
 }
+
+func ContainsFilter(src string) (f Filter, err error) {
+	part := []byte(src)
+	return func(line []byte) bool {
+		return bytes.Contains(line, part)
+	}, nil
+
+}
