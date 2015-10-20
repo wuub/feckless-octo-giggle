@@ -138,8 +138,10 @@ type ReadByteser interface {
 
 func (s *StreamMap) Attach(r ReadByteser) {
 	defer s.Stop()
+	var line []byte
+	var err error
 	for {
-		line, err := r.ReadBytes('\n')
+		line, err = r.ReadBytes('\n')
 		if err == io.EOF {
 			break
 		}
